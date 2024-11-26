@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PermissionsConfig(AppConfig):
+class ReportsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.permissions'
+    name = 'apps.reports'
