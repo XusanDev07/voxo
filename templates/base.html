@@ -20,8 +20,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/linearicon.css' %}">
 
     <!-- fontawesome css -->
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Themify icon css-->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/themify.css' %}">
 
@@ -99,7 +98,7 @@
                         </li>
                         <li class="onhover-dropdown">
                             <div class="notification-box">
-                                <span class="lnr lnr-alarm"></span>
+                                <i class="fa-solid fa-message"></i>
                                 <span class="badge rounded-pill badge-theme">4</span>
                             </div>
                             <ul class="notification-dropdown onhover-show-div">
@@ -135,13 +134,13 @@
                         </li>
 
                         <li>
-                            <div class="mode">
-                                <span class="lnr lnr-moon"></span>
+                            <div class="mode text-primary">
+                                <i class="fa-solid fa-moon"></i>
                             </div>
                         </li>
 
                         <li class="onhover-dropdown">
-                            <span class="lnr lnr-bubble"></span>
+                            <i class="fa-brands fa-rocketchat text-primary"></i>
                             <ul class="chat-dropdown onhover-show-div">
                                 <li>
                                     <span class="lnr lnr-bubble"></span>
@@ -188,7 +187,7 @@
 
                         <li class="maximize">
                             <a class="text-dark" href="javascript:void(0)!" onclick="javascript:toggleFullScreen()">
-                                <span class="lnr lnr-frame-expand"></span>
+                                <i class="fa-regular fa-square-full text-primary"></i>
                             </a>
                         </li>
                         <li class="profile-nav onhover-dropdown pe-0 me-0">
@@ -344,15 +343,15 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="translation.html">Translation</a>
+                                            <a href="{% url 'translation' %}">Translation</a>
                                         </li>
 
                                         <li>
-                                            <a href="currency-rates.html">Currency Rates</a>
+                                            <a href="{% url 'currency_rate' %}">Currency Rates</a>
                                         </li>
 
                                         <li>
-                                            <a href="taxes.html">Taxes</a>
+                                            <a href="{% url 'taxes' %}">Taxes</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -364,11 +363,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="products.html">Prodcts</a>
+                                            <a href="{% url 'products' %}">Products</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-product.html">Add New Products</a>
+                                            <a href="{% url 'create_product' %}">Add New Products</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -380,11 +379,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="menu-lists.html">Menu Lists</a>
+                                            <a href="{% url 'menus' %}">Menu Lists</a>
                                         </li>
 
                                         <li>
-                                            <a href="create-menu.html">Create Menu</a>
+                                            <a href="{% url 'create_menu' %}">Create Menu</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -396,31 +395,31 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="coupon-list.html">Coupon List</a>
+                                            <a href="{% url 'coupons' %}">Coupon List</a>
                                         </li>
 
                                         <li>
-                                            <a href="create-coupon.html">Create Coupon</a>
+                                            <a href="{% url 'create_coupon' %}">Create Coupon</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'product_review' %}">
                                         <i data-feather="star"></i>
                                         <span>Product Review</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="invoice.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'invoice' %}">
                                         <i data-feather="archive"></i>
                                         <span>Invoice</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'support_ticket' %}">
                                         <i data-feather="phone"></i>
                                         <span>Support Ticket</span>
                                     </a>
@@ -433,41 +432,41 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="profile-setting.html">Profile Setting</a>
+                                            <a href="{% url 'profile_setting' %}">Profile Setting</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'reports' %}">
                                         <i data-feather="file-text"></i>
                                         <span>Reports</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'list_page' %}">
                                         <i data-feather="list"></i>
                                         <span>List Page</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="login.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'login' %}">
                                         <i data-feather="log-in"></i>
                                         <span>Log In</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="forgot-password.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'forgot_password' %}">
                                         <i data-feather="key"></i>
                                         <span>Forgot Password</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="sign-up.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{% url 'register' %}">
                                         <i data-feather="plus-circle"></i>
                                         <span>Register</span>
                                     </a>
