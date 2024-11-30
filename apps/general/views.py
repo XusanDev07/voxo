@@ -1,5 +1,6 @@
+from apps.products.models import Product
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 class HomeView(TemplateView):
     template_name = 'index.html'
@@ -34,8 +35,12 @@ class CurrencyRateView(TemplateView):
 class TaxesView(TemplateView):
     template_name = 'pages/taxes.html'
 
-class ProductsView(TemplateView):
+class ProductsListView(ListView):
     template_name = 'pages/products.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        return Product.objects.select_related('category')
 
 class CreateProductView(TemplateView):
     template_name = 'pages/add-new-product.html'

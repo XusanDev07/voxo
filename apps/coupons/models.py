@@ -1,27 +1,32 @@
-from django.conf import settings
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.db import models
-
+from apps.categories.models import Category
+from apps.products.models import Product
 from apps.utils.models.base_model import AbstractBaseModel
+from django.db import models
 
 
 class Coupon(AbstractBaseModel):
-    title = models.CharField(max_length=255)
-    code = models.CharField(max_length=50, unique=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=500)
+    code = models.CharField(max_length=100)
+    discount = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField()
-    is_active = models.BooleanField(default=True)
-    discount_percent = models.PositiveSmallIntegerField(
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(100)
-        ]
-    )
+    quantity = models.IntegerField(default=0)
+    discount_type = models.BooleanField(blank=True, default=False)
+
+    def __str__(self):
+        return self.title
+
+class Restriction(AbstractBaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    minimum = models.IntegerField(default=0)
+    maximum = models.IntegerField(default=0)
 
 
-class UserCoupon(AbstractBaseModel):
-    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+class Usage(AbstractBaseModel):
+    per_limit = models.IntegerField(default=0)
+    per_customer = models.IntegerField(default=0)
 
-    class Meta:
-        unique_together = (('user', 'coupon'),)
+

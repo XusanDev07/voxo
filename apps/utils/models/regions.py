@@ -11,11 +11,12 @@ class Region(AbstractBaseModel):
     slug = models.SlugField(max_length=255, unique=True, editable=False)
 
     def clean(self):
-        self.slug = slugify(self.name)
-        if Region.objects.exclude(pk=self.pk).filter(slug=self.slug).exists():
-            raise ValidationError({'name': 'name already exists'})
+        self.name = slugify(self.name)
+        if Region.objects.exclude(pk=self.pk).filter(self=self.slug).exists():
+            raise ValidationError("{name} already exists ".format(name=self.name))
 
     class Meta:
-        db_table = 'region'
+        db_table = 'regions'
         verbose_name = _('Region')
         verbose_name_plural = _('Regions')
+        ordering = ['name']

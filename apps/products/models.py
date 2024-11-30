@@ -1,29 +1,35 @@
+from optparse import Option
+
 from django.db import models
 from apps.utils.models.base_model import AbstractBaseModel
 
 
 class Product(AbstractBaseModel):
-    """ that models is for list products """
+    """ this model creates products """
 
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-
-    old_price = models.DecimalField(max_digits=5, decimal_places=2, help_text='enter in usd')
-    price = models.DecimalField(max_digits=5, decimal_places=2, help_text='enter in usd')
-    total_price = models.DecimalField(max_digits=5, decimal_places=2)
-
-    quantity = models.PositiveSmallIntegerField(default=1)
-
-    image = models.ImageField(upload_to='products/image/%Y/%m/%d')
-
-    categories = models.ForeignKey(
-        'categories.Category',
-        related_name='products',
+    name = models.CharField(max_length=255, unique=True)
+    image = models.ImageField(upload_to='products')
+    category = models.ForeignKey(
+        to='categories.Category',
+        null=True,
         on_delete=models.SET_NULL,
-        null=True)
+        related_name='products'
+    )
+    quantity = models.PositiveSmallIntegerField(default=1)
+    price = models.PositiveSmallIntegerField(default=0)
+    published = models.BooleanField(default=False)
+    videos = models.FileField(upload_to='videos/')
+    description = models.TextField(max_length=500, blank=True)
+    weight = models.PositiveSmallIntegerField(default=0)
+    length = models.PositiveSmallIntegerField(default=0)
+    brand = models.CharField(max_length=255, blank=True)
+    subcategory = models.ForeignKey(
+        to='categories.Subcategory',
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='products'
+    )
+    product_type = models.CharField(max_length=255, blank=True)
 
-    class Meta:
-        db_table = 'products'
-        verbose_name = 'product'
-        verbose_name_plural = 'products'
-        ordering = ['title']
+    def __str__(self):
+        return self.name

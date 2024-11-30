@@ -3,24 +3,31 @@ import uuid
 from django.db import models
 from django.conf import settings
 
-
 class AbstractBaseModel(models.Model):
-    """  """
-    id = models.UUIDField(primary_key=True, editable=False, unique=True)
+    """"
+    Abstract base model with common fields for all models.
 
+    Attributes:
+         created_at (DateTimeField): Timestamp when the object is created.
+         updated_at (DateTimeField): Timestamp when the object is last updated.
+    """
+
+    id = models.UUIDField(primary_key=True, unique=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     created_by = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
-        related_name='+'
+        related_name='+',
     )
+
     updated_by = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
-        related_name='+'
+        related_name='+',
     )
 
     class Meta:
