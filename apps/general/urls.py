@@ -1,8 +1,6 @@
 from django.urls import path
 from .views import (
     HomeView,
-    UsersView,
-    CreateUserView,
     CreateVendorView,
     VendorsView,
     OrderTrackingView,
@@ -30,8 +28,6 @@ from .views import (
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('users/', UsersView.as_view(), name='users'),
-    path('add_user/', CreateUserView.as_view(), name='add_user'),
     path('orders/', OrdersView.as_view(), name='orders'),
     path('orders_detail/', OrderDetailView.as_view(), name='order_detail'),
     path('orders_tracking/', OrderTrackingView.as_view(), name='order_tracking'),

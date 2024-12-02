@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.tickets',
     'apps.products',
     'apps.categories',
+    'apps.permissions',
     'apps.authentications',
 
     # This place for debug-toolbar

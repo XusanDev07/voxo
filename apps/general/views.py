@@ -5,12 +5,6 @@ from django.views.generic import TemplateView, ListView
 class HomeView(TemplateView):
     template_name = 'index.html'
 
-class UsersView(TemplateView):
-    template_name = 'pages/all-users.html'
-
-class CreateUserView(TemplateView):
-    template_name = 'pages/add-new-user.html'
-
 class OrdersView(TemplateView):
     template_name = 'pages/order-list.html'
 
